@@ -5,6 +5,28 @@ import categoryRepository from "./categoryRepository";
 // Declare the actions
 
 import type { RequestHandler } from "express";
+const validate: RequestHandler = (req, res, next) => {
+  type ValidationError = {
+    field: string;
+    message: string;
+  };
+  const errors: ValidationError[] = [];
+  const { name } = req.body;
+  if (name == null) {
+    errors.push({ field: "name", message: "The field is required" });
+  } else if (name.length > 255) {
+    errors.push({
+      field: "name",
+      message: "should contain less than 255 characters",
+    });
+  }
+
+  if (errors.length === 0) {
+    next();
+  } else {
+    res.status(400).json({ validationErrors: errors });
+  }
+};
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
@@ -96,4 +118,4 @@ const destroy: RequestHandler = async (req, res, next) => {
 
 // Export them to import them somewhere else
 
-export default { browse, read, edit, add, destroy };
+export default { browse, read, edit, add, destroy, validate };

@@ -1,0 +1,29 @@
+.programs {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+p {
+  color: #555;
+}
+
+img {
+  max-width: 250px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
