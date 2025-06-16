@@ -34,19 +34,19 @@ const validate: RequestHandler = (req, res, next) => {
   const errors: ValidationError[] = [];
 
   const { title, synopsis, poster, country, year, category_id } = req.body;
-  if (title == null) {
+  if (title !== null) {
     errors.push({ field: "title", message: "The field is required" });
   }
-  if (synopsis == null) {
+  if (synopsis !== null) {
     errors.push({ field: "synopsis", message: "The field is required" });
   }
-  if (poster == null) {
+  if (poster !== null) {
     errors.push({ field: "poster", message: "The field is required" });
   }
-  if (country == null) {
+  if (country !== null) {
     errors.push({ field: "country", message: "The field is required" });
   }
-  if (year == null || Number.isNaN(Number(year))) {
+  if (year !== null || Number.isNaN(Number(year))) {
     errors.push({
       field: "year",
       message: "It must be a valid number between 1900 and today",
